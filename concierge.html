@@ -1,70 +1,266 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>智绘旅途 | 旅行私人管家</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>智绘旅途 | 旅行私人管家</title>
+    <style>
+        :root{
+            --blue-500: #1d6ce0;
+            --blue-600: #1555b0;
+            --blue-100: #eaf5ff;
+            --muted: #4b6173;
+            --card-bg: #ffffff;
+            --accent: #2b8bf6;
+            --pill-bg: #eef6ff;
+        }
+        *{box-sizing:border-box;}
+        html,body{height:100%;}
+        body{
+            margin:0;
+            font-family: "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+            color:var(--muted);
+            background: linear-gradient(180deg, #f7fbff 0%, #eef7ff 100%);
+            padding-bottom:72px;
+        }
+
+        /* Header */
+        .site-header{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:14px 22px;
+            background:var(--blue-500);
+            color:#fff;
+            position:sticky;
+            top:0;
+            z-index:100;
+        }
+        .header-left{display:flex;align-items:center;gap:12px;}
+        .back-link{color:rgba(255,255,255,0.95);text-decoration:none;font-size:0.95rem;}
+        .small-logo{height:44px;width:44px;border-radius:8px;background:#fff;padding:6px;object-fit:contain;}
+        .brand h1{margin:0;font-size:1.05rem;color:#fff;}
+        .brand .slogan{margin:0;color:rgba(255,255,255,0.9);font-size:0.85rem;}
+        .header-right{display:flex;gap:10px;align-items:center;}
+        .btn{display:inline-block;padding:8px 12px;border-radius:8px;background:var(--blue-500);color:#fff;border:none;cursor:pointer;font-size:0.95rem;}
+        .btn:hover{background:var(--blue-600);}
+        .btn-outline{background:transparent;color:var(--blue-500);border:1px solid rgba(29,108,224,0.12);}
+        .btn-primary{background:var(--accent);color:#fff;}
+
+        /* Layout */
+        .container{max-width:1180px;margin:20px auto;padding:0 18px 24px 18px;}
+        .concierge-grid{display:grid;grid-template-columns:2fr 1fr;gap:20px;align-items:start;}
+        @media (max-width:980px){ .concierge-grid{grid-template-columns:1fr;} }
+
+        /* Card */
+        .card{background:var(--card-bg);padding:16px;border-radius:12px;box-shadow:0 8px 24px rgba(41,102,173,0.06);border:1px solid rgba(29,108,224,0.06);margin-bottom:16px;}
+        .card-blue{border-left:6px solid var(--blue-500);}
+        .card-title{margin:0 0 10px 0;color:var(--blue-600);font-size:1.05rem;}
+        .muted{color:var(--muted);font-size:0.95rem;}
+
+        /* service list */
+        .service-list{display:flex;flex-direction:column;gap:10px;}
+        .service-item{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:8px;background:#f8fbff;border:1px solid rgba(29,108,224,0.06);}
+        .service-item .meta{display:flex;flex-direction:column;}
+        .toggle{padding:6px 10px;border-radius:999px;border:1px solid rgba(29,108,224,0.08);background:#fff;cursor:pointer;color:var(--blue-600);}
+
+        /* reminders */
+        .reminder-row{display:flex;gap:8px;align-items:center;margin-top:8px;}
+        .reminder-row input[type="datetime-local"]{padding:8px;border-radius:8px;border:1px solid rgba(29,108,224,0.08);}
+
+        /* bookings */
+        .booking-actions{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;}
+        .booking-card{padding:12px;border-radius:10px;background:#fff;border:1px solid rgba(29,108,224,0.06);}
+
+        /* small image */
+        .img-box{height:120px;border-radius:8px;background:#f6fbff;border:1px dashed rgba(29,108,224,0.06);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+        .img-box img{width:100%;height:100%;object-fit:cover;}
+
+        /* bottom strip */
+        .bottom-strip{position:fixed;left:0;right:0;bottom:0;background:var(--blue-500);color:#fff;padding:12px 18px;box-shadow:0 -6px 20px rgba(26,90,170,0.12);}
+        .bottom-container{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;}
+        .bottom-title{font-weight:700;}
+        .bottom-note{opacity:0.95;font-size:0.92rem;}
+    </style>
 </head>
 <body>
-  <header class="site-header small">
+
+<header class="site-header">
     <div class="header-left">
-      <a href="index.html" class="back-link">← 返回首页</a>
-      <img src="assets/logo-placeholder.png" alt="Logo" class="logo small-logo" />
-      <div class="brand">
-        <h1>旅行私人管家</h1>
-        <p class="slogan">确认方案后，自动提醒与订购支持</p>
-      </div>
+        <a href="index.html" class="back-link">← 返回首页</a>
+        <img src="assets/logo-placeholder.png" alt="智绘旅途 Logo" class="small-logo" />
+        <div class="brand">
+            <h1>旅行私人管家</h1>
+            <p class="slogan">确认方案后，自动提醒与订购支持</p>
+        </div>
     </div>
+
     <nav class="header-right">
-      <a href="#" class="btn btn-outline">注册</a>
-      <a href="#" class="btn btn-primary">登录</a>
+        <button class="btn btn-outline" id="regBtnC">注册</button>
+        <button class="btn btn-primary" id="loginBtnC">登录</button>
     </nav>
-  </header>
+</header>
 
-  <main class="container">
-    <section class="panel-page">
-      <div class="panel-left">
-        <div class="card">
-          <h2>确认并托管方案</h2>
-          <p>确认最终方案后，启用私人管家：自动提醒、跳转订票/酒店/车辆、优化日程。</p>
-          <div class="actions">
-            <button class="btn btn-primary">确认并启用管家</button>
-            <button class="btn">设置提醒规则</button>
-            <button class="btn btn-outline">管理支付/订单</button>
-          </div>
-        </div>
+<main class="container">
+    <div class="concierge-grid">
+        <!-- Left: Main concierge controls -->
+        <section>
+            <div class="card card-blue">
+                <h2 class="card-title">确认并托管方案</h2>
+                <p class="muted">确认最终方案后，启用私人管家：自动提醒、跳转订票/酒店/车辆、优化日程。</p>
 
-        <div class="card">
-          <h2>实时推荐（占位）</h2>
-          <div class="img-box">
-            <img src="assets/concierge-sample.png" alt="实时推荐" />
-          </div>
-        </div>
-      </div>
+                <div style="display:flex;gap:12px;align-items:center;margin-top:12px;">
+                    <button class="btn btn-primary" id="enableConcierge">启用私人管家</button>
+                    <button class="btn btn-outline" id="disableConcierge">暂停管家</button>
+                    <span id="conciergeStatus" style="color:var(--muted);margin-left:8px;">当前状态：未启用</span>
+                </div>
 
-      <aside class="panel-right">
-        <div class="card small">
-          <h3>服务能力</h3>
-          <ul class="feature-list">
-            <li>订单跳转（车/票/酒店）</li>
-            <li>行程提醒 & 动态调整</li>
-            <li>周边实时推荐</li>
-          </ul>
-        </div>
+                <div style="margin-top:14px;">
+                    <h3 style="margin:0 0 8px 0;color:var(--blue-600)">提醒设置</h3>
+                    <div class="reminder-row">
+                        <input type="datetime-local" id="reminderTime">
+                        <button class="btn" id="addReminder">添加提醒</button>
+                    </div>
+                    <div id="reminderList" style="margin-top:10px;display:flex;flex-direction:column;gap:8px;"></div>
+                </div>
 
-        <div class="card small">
-          <h3>合作与广告</h3>
-          <div class="img-box small">
-            <img src="assets/ad-placeholder.png" alt="广告位" />
-          </div>
-        </div>
-      </aside>
-    </section>
-  </main>
+                <div style="margin-top:14px;">
+                    <h3 style="margin:0 0 8px 0;color:var(--blue-600)">一键订购（占位）</h3>
+                    <div class="booking-actions">
+                        <div class="booking-card">
+                            <div><strong>火车票</strong></div>
+                            <div style="margin-top:6px;">
+                                <button class="btn small" data-book="train">跳转订票</button>
+                                <button class="btn btn-outline small" data-book="train">预订示例</button>
+                            </div>
+                        </div>
+                        <div class="booking-card">
+                            <div><strong>酒店</strong></div>
+                            <div style="margin-top:6px;">
+                                <button class="btn small" data-book="hotel">跳转预订</button>
+                                <button class="btn btn-outline small" data-book="hotel">查看房型</button>
+                            </div>
+                        </div>
+                        <div class="booking-card">
+                            <div><strong>景点门票</strong></div>
+                            <div style="margin-top:6px;">
+                                <button class="btn small" data-book="ticket">立即订票</button>
+                                <button class="btn btn-outline small" data-book="ticket">查看说明</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-  <footer class="site-footer">
-    <p>智绘旅途 · 旅行私人管家板块</p>
-  </footer>
+            </div>
+
+            <div class="card card-blue">
+                <h2 class="card-title">实时推荐（占位）</h2>
+                <p class="muted">闲时 AI 将根据位置与偏好，智能推荐周边游玩地。</p>
+                <div class="img-box">
+                    <img src="assets/concierge-sample.png" alt="实时推荐">
+                </div>
+            </div>
+        </section>
+
+        <!-- Right: Capabilities & ads -->
+        <aside>
+            <div class="card card-blue">
+                <h3 class="card-title">服务能力</h3>
+                <ul class="feature-list">
+                    <li>订单跳转（车/票/酒店）</li>
+                    <li>行程提醒 & 动态调整</li>
+                    <li>周边实时推荐</li>
+                    <li>本地合作优惠</li>
+                </ul>
+            </div>
+
+            <div class="card card-blue">
+                <h3 class="card-title">订单与提醒记录</h3>
+                <div id="records" style="display:flex;flex-direction:column;gap:8px;">
+                    <!-- dynamic records appended here -->
+                </div>
+            </div>
+
+            <div class="card card-blue">
+                <h3 class="card-title">合作与广告</h3>
+                <div class="img-box">
+                    <img src="assets/ad-placeholder.png" alt="广告位">
+                </div>
+            </div>
+        </aside>
+    </div>
+</main>
+
+<footer class="bottom-strip">
+    <div class="bottom-container">
+        <span class="bottom-title">智慧旅途 · 智绘旅途</span>
+        <span class="bottom-note">© 2025 智绘旅途</span>
+    </div>
+</footer>
+
+<script>
+    (function(){
+        const statusEl = document.getElementById('conciergeStatus');
+        let enabled = false;
+        const reminders = document.getElementById('reminderList');
+        const records = document.getElementById('records');
+
+        document.getElementById('enableConcierge').addEventListener('click', ()=>{
+            enabled = true;
+            statusEl.textContent = '当前状态：已启用';
+            alert('私人管家已启用（占位）。系统将开始进行自动提醒与订单跳转。');
+            // record
+            appendRecord('管家已启用');
+        });
+
+        document.getElementById('disableConcierge').addEventListener('click', ()=>{
+            enabled = false;
+            statusEl.textContent = '当前状态：已暂停';
+            appendRecord('管家已暂停');
+        });
+
+        document.getElementById('addReminder').addEventListener('click', ()=>{
+            const dt = document.getElementById('reminderTime').value;
+            if(!dt){ alert('请选择提醒时间'); return; }
+            const item = document.createElement('div');
+            item.className = 'service-item';
+            item.innerHTML = `<div class="meta"><strong>提醒</strong><div class="muted">${new Date(dt).toLocaleString()}</div></div><div><button class="btn small" data-action="remove">删除</button></div>`;
+            reminders.appendChild(item);
+            appendRecord('添加提醒：' + new Date(dt).toLocaleString());
+            document.getElementById('reminderTime').value = '';
+        });
+
+        reminders.addEventListener('click', (e)=>{
+            if(e.target && e.target.dataset && e.target.dataset.action === 'remove'){
+                const node = e.target.closest('.service-item');
+                if(node) {
+                    appendRecord('删除提醒');
+                    node.remove();
+                }
+            }
+        });
+
+        // bookings
+        document.querySelectorAll('[data-book]').forEach(btn=>{
+            btn.addEventListener('click', ()=>{
+                const type = btn.dataset.book;
+                alert(`${type} 预订页面（占位） - 将执行跳转或打开第三方订票页`);
+                appendRecord(`发起预订：${type}`);
+            });
+        });
+
+        function appendRecord(text){
+            const el = document.createElement('div');
+            el.className = 'service-item';
+            el.innerHTML = `<div class="meta"><div class="muted">${new Date().toLocaleString()}</div><div>${text}</div></div>`;
+            records.prepend(el);
+        }
+
+        // header buttons placeholders
+        document.getElementById('regBtnC').addEventListener('click', ()=> alert('注册（占位）'));
+        document.getElementById('loginBtnC').addEventListener('click', ()=> alert('登录（占位）'));
+
+    })();
+</script>
 </body>
 </html>
