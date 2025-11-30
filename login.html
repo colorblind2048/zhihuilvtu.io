@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>登录 - 智绘旅途</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: url("../assets/your-bg.jpg") no-repeat center center/cover;
+    height: 100vh;
+    color: white;
+    position: relative;
+  }
+
+  body::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(2px);
+    z-index: 0;
+  }
+
+  .nav {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 50px;
+    font-size: 18px;
+    background: rgba(0, 158, 255, 0.55);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 8px rgba(0, 180, 255, 0.35);
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+  }
+
+  .nav-left {
+    font-size: 24px;
+    font-weight: bold;
+    color: #e9f4ff;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-left svg path {
+    stroke: #e9f4ff;
+  }
+
+  .nav-right a {
+    text-decoration: none;
+    margin-left: 25px;
+    color: #e9f4ff;
+  }
+
+  /* 登录窗体 */
+  .form-container {
+    position: relative;
+    z-index: 2;
+    width: 380px;
+    margin: 120px auto;
+    padding: 35px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+  }
+
+  .form-title {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #eaf3ff;
+    font-weight: bold;
+  }
+
+  .input-group {
+    margin-bottom: 22px;
+  }
+
+  .input-group label {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 8px;
+    color: #eaf3ff;
+  }
+
+  .input-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background: rgba(255,255,255,0.2);
+    color: white;
+  }
+
+  .btn-submit {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #2ecc71;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+  }
+
+  .btn-submit:hover {
+    background: #27ae60;
+  }
+
+  .form-footer {
+    text-align: center;
+    margin-top: 18px;
+  }
+
+  .form-footer a {
+    color: #aee0ff;
+    text-decoration: none;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="nav">
+  <div class="nav-left">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="margin-right: 10px;">
+      <path d="M2 12L22 2L14 22L12 14L2 12Z" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+    </svg>
+    智绘旅途
+  </div>
+
+  <div class="nav-right">
+    <a href="../index.html">首页</a>
+    <a href="login.html">登录</a>
+    <a href="register.html">注册</a>
+  </div>
+</div>
+
+<div class="form-container">
+  <div class="form-title">登录</div>
+
+  <div class="input-group">
+    <label>邮箱</label>
+    <input type="email" placeholder="请输入邮箱">
+  </div>
+
+  <div class="input-group">
+    <label>密码</label>
+    <input type="password" placeholder="请输入密码">
+  </div>
+
+  <button class="btn-submit">登录</button>
+
+  <div class="form-footer">
+    还没有账号？ <a href="register.html">立即注册</a>
+  </div>
+</div>
+
+</body>
+</html>
