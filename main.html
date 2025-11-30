@@ -26,36 +26,36 @@
     backdrop-filter: blur(2px);
     z-index: 0;
   }
-.nav {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 50px;
-  font-size: 18px;
 
-  /* ⭐ 更亮的科技蓝 + 更低透明度 + 柔光层 */
-  background: rgba(0, 158, 255, 0.55);   /* 更亮 & 更实一点的浅蓝 */
-  backdrop-filter: blur(8px);
+  /* ⭐ 顶部导航栏（亮蓝科技风 + 登录/注册按钮） */
+  .nav {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 50px;
+    font-size: 18px;
 
-  /* 给导航栏加一点光泽 */
-  box-shadow: 0 2px 8px rgba(0, 180, 255, 0.35);
-
-  /* 更细致的底部分割线 */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-}
-
-/* 图标颜色不变（仍然亮白科技风） */
-.nav-left svg path {
-  stroke: #e9f4ff;
-}
+    background: rgba(0, 158, 255, 0.55);   /* 明亮科技蓝 */
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 8px rgba(0, 180, 255, 0.35);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  }
 
   .nav-left {
     font-size: 24px;
     font-weight: bold;
     color: #e9f4ff;
+    display: flex;
+    align-items: center;
   }
 
+  /* 保持纸飞机亮色 */
+  .nav-left svg path {
+    stroke: #e9f4ff;
+  }
+
+  /* 普通导航链接 */
   .nav-right a {
     margin-left: 30px;
     text-decoration: none;
@@ -65,6 +65,27 @@
 
   .nav-right a:hover {
     color: #ffffff;
+  }
+
+  /* 登录 / 注册按钮 */
+  .nav-btn {
+    padding: 8px 18px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.45);
+    transition: 0.25s;
+  }
+
+  .nav-btn:hover {
+    background: rgba(255,255,255,0.2);
+  }
+
+  .nav-btn-primary {
+    background: rgba(255,255,255,0.25);
+    border-color: rgba(255,255,255,0.6);
+  }
+
+  .nav-btn-primary:hover {
+    background: rgba(255,255,255,0.4);
   }
 
   /* 主内容区（左侧标题 + 描述 + 按钮） */
@@ -92,7 +113,7 @@
     margin-bottom: 40px;
   }
 
-  /* 按钮 */
+  /* 主按钮 */
   .btn-enter {
     display: inline-block;
     padding: 15px 35px;
@@ -109,17 +130,18 @@
     background: #27ae60;
     box-shadow: 0 6px 18px rgba(0,255,150,0.5);
   }
-
 </style>
 </head>
 
 <body>
+
 <!-- 顶部导航栏 -->
 <div class="nav">
   <div class="nav-left">
-    <!-- 纸飞机图标（SVG） -->
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="vertical-align: middle; margin-right: 10px;">
-      <path d="M2 12L22 2L14 22L12 14L2 12Z" stroke="#e9f4ff" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+
+    <!-- 纸飞机 SVG 图标 -->
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="margin-right: 10px;">
+      <path d="M2 12L22 2L14 22L12 14L2 12Z" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
     </svg>
 
     智绘旅途
@@ -130,6 +152,10 @@
     <a href="#">功能介绍</a >
     <a href="#">团队</a >
     <a href="#">联系我们</a >
+
+    <!-- 登录 / 注册按钮 -->
+    <a class="nav-btn" href="login.html">登录</a >
+    <a class="nav-btn nav-btn-primary" href="register.html">注册</a >
   </div>
 </div>
 
@@ -138,8 +164,8 @@
   <div class="title">欢迎来到智绘旅途</div>
   <div class="desc">
     一个基于 AI 技术的智能旅行规划平台，<br>
-    致力于为你提供个性化、可调整、可验证的旅行方案。<br>
-    点击下方按钮进入体验。
+    提供个性化、可调整、智能陪伴式的旅行体验。<br>
+    点击下方按钮开始你的旅程。
   </div>
 
   <a href="main.html" class="btn-enter">进入旅行平台</a >
